@@ -27,6 +27,11 @@ public class FillerWord {
     public FillerWord() {
     }
 
+    public FillerWord(String word) {
+        this.word = word;
+        this.count = 0;
+    }
+
     public FillerWord(String word, Integer count) {
         this.word = word;
         this.count = count;
