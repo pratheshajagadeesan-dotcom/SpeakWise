@@ -1,0 +1,65 @@
+package com.speakwise.entity;
+
+import jakarta.persistence.*;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
+/**
+ * Represents one practice session by a user.
+ */
+@Entity
+@Table(name = "practice_sessions")
+public class PracticeSession {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String topic;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(mappedBy = "practiceSession")
+    private SpeechReport speechReport;
+
+    public PracticeSession() {
+    }
+
+    public PracticeSession(String topic) {
+        this.topic = topic;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public SpeechReport getSpeechReport() {
+        return speechReport;
+    }
+
+    public void setSpeechReport(SpeechReport speechReport) {
+        this.speechReport = speechReport;
+    }
+}
