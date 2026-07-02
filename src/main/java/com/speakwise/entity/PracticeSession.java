@@ -26,6 +26,8 @@ public class PracticeSession {
     @OneToOne(mappedBy = "practiceSession")
     private SpeechReport speechReport;
 
+    private String transcript;
+
     public PracticeSession() {
     }
 
@@ -71,5 +73,13 @@ public class PracticeSession {
 
     public void setSpeechReport(SpeechReport speechReport) {
         this.speechReport = speechReport;
+    }
+
+    public String getTranscript() {
+        return transcript;
+    }
+
+    public void setTranscript(String transcript) {
+        this.transcript = transcript;
     }
 }

@@ -23,7 +23,7 @@ public class PracticeSessionController {
     @PostMapping("/upload")
     public ResponseEntity<PracticeSession> uploadAudio(
             @RequestParam("file") MultipartFile file)
-            throws IOException {
+            throws Exception {
 
         PracticeSession practiceSession =
                 practiceSessionService.uploadAudio(file);
