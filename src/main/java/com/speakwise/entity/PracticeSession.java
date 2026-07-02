@@ -17,6 +17,8 @@ public class PracticeSession {
     private Long id;
 
     private String topic;
+
+    private String audioFilePath;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -45,6 +47,14 @@ public class PracticeSession {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public String getAudioFilePath() {
+        return audioFilePath;
+    }
+
+    public void setAudioFilePath(String audioFilePath) {
+        this.audioFilePath = audioFilePath;
     }
 
     public User getUser() {
