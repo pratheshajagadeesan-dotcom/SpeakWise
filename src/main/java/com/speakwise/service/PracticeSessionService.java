@@ -2,8 +2,10 @@ package com.speakwise.service;
 
 import com.speakwise.entity.PracticeSession;
 import com.speakwise.repository.PracticeSessionRepository;
+import com.speakwise.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import com.speakwise.entity.Question;
 
 import java.io.IOException;
 
@@ -16,18 +18,27 @@ public class PracticeSessionService {
 
     private final SpeechToTextService speechToTextService;
 
+    private final QuestionRepository questionRepository;
+
     public PracticeSessionService(
             PracticeSessionRepository practiceSessionRepository,
             FileStorageService fileStorageService,
-            SpeechToTextService speechToTextService) {
+            SpeechToTextService speechToTextService,QuestionRepository questionRepository) {
 
         this.practiceSessionRepository = practiceSessionRepository;
         this.fileStorageService = fileStorageService;
         this.speechToTextService = speechToTextService;
+        this.questionRepository = questionRepository;
     }
 
-    public PracticeSession uploadAudio(MultipartFile file)
+    public PracticeSession uploadAudio(
+            MultipartFile file,
+            Long questionId)
             throws Exception {
+
+        Question question =
+                questionRepository.findById(questionId)
+                        .orElseThrow();
 
         String filePath = fileStorageService.uploadAudio(file);
 
@@ -59,6 +70,8 @@ public class PracticeSessionService {
         practiceSession.setAudioFilePath(filePath);
 
         practiceSession.setTranscript(transcript);
+
+        practiceSession.setQuestion(question);
 
         speechToTextService.printWordTimings(result);
 

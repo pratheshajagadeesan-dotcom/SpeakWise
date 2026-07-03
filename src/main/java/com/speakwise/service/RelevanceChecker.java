@@ -33,6 +33,10 @@ public class RelevanceChecker {
             }
         }
 
+        if (keyPoints.isEmpty()) {
+            return 0.0;
+        }
+
         double score =
                 (mentioned * 100.0) / keyPoints.size();
 
