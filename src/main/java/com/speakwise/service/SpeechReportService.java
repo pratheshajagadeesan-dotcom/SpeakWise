@@ -27,17 +27,20 @@ public class SpeechReportService {
 
     private final QuestionRepository questionRepository;
 
+    private final EmailService emailService;
+
     public SpeechReportService(
             PracticeSessionRepository practiceSessionRepository,
             SpeechReportRepository speechReportRepository,
             AnalysisEngine analysisEngine,
-            RelevanceChecker relevanceChecker,QuestionRepository questionRepository) {
+            RelevanceChecker relevanceChecker,QuestionRepository questionRepository,EmailService emailService) {
 
         this.practiceSessionRepository = practiceSessionRepository;
         this.speechReportRepository = speechReportRepository;
         this.analysisEngine = analysisEngine;
         this.relevanceChecker = relevanceChecker;
         this.questionRepository = questionRepository;
+        this.emailService = emailService;
     }
 
     public SpeechReport generateReport(Long sessionId) {
@@ -64,6 +67,20 @@ public class SpeechReportService {
         speechReportRepository.save(speechReport);
 
         practiceSessionRepository.save(practiceSession);
+
+        String email = practiceSession.getUser().getEmail();
+
+        String subject = "SpeakWise Speech Report";
+
+        String body =
+                "Your speech has been analyzed.\n\n"
+                        + "Relevance Score: "
+                        + speechReport.getScore();
+
+        emailService.sendReportEmail(
+                email,
+                subject,
+                body);
 
         return speechReport;
     }

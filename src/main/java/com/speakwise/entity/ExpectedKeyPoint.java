@@ -3,6 +3,7 @@ package com.speakwise.entity;
 import jakarta.persistence.*;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Represents an expected key point for a question.
@@ -20,6 +21,7 @@ public class ExpectedKeyPoint {
 
     @ManyToOne
     @JoinColumn(name = "question_id")
+    @JsonIgnore
     private Question question;
 
     public ExpectedKeyPoint() {

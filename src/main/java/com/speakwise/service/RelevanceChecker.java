@@ -43,6 +43,7 @@ public class RelevanceChecker {
         return score;
     }
 
+
     public List<String> getMissingKeyPoints(Long questionId, String transcript) {
 
         List<ExpectedKeyPoint> keyPoints =
