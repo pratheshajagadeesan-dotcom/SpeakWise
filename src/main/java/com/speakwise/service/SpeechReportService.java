@@ -68,20 +68,6 @@ public class SpeechReportService {
 
         practiceSessionRepository.save(practiceSession);
 
-        String email = practiceSession.getUser().getEmail();
-
-        String subject = "SpeakWise Speech Report";
-
-        String body =
-                "Your speech has been analyzed.\n\n"
-                        + "Relevance Score: "
-                        + speechReport.getScore();
-
-        emailService.sendReportEmail(
-                email,
-                subject,
-                body);
-
         return speechReport;
     }
 

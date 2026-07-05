@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Represents one practice session by a user.
@@ -25,6 +26,8 @@ public class PracticeSession {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @JsonIgnore
 
     @OneToOne(mappedBy = "practiceSession")
     private SpeechReport speechReport;

@@ -5,6 +5,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Stores the analysis report of a speech.
@@ -18,6 +19,8 @@ public class SpeechReport {
     private Long id;
 
     private Double score;
+
+    @JsonIgnore
 
     @OneToOne
     @JoinColumn(name = "practice_session_id")
