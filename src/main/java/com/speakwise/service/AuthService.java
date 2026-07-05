@@ -47,6 +47,15 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request) {
 
+        User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+
+        System.out.println("Entered Password : " + request.getPassword());
+        System.out.println("Stored Hash      : " + user.getPassword());
+
+        System.out.println(passwordEncoder.matches(
+                request.getPassword(),
+                user.getPassword()));
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
