@@ -52,7 +52,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/questions",
-                                "/api/test"
+                                "/api/test",
+                                "/api/sessions/**"
                         ).permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(
