@@ -64,11 +64,23 @@ public class SpeechReportService {
 
         speechReport.setScore(relevanceScore);
 
+        speechReport.setWpm(120.0);
+
+        speechReport.setPauseCount(5);
+
+        speechReport.setTipMessage("Try to speak more confidently and reduce filler words.");
+
+        speechReport.setMissingKeyPoints("No missing key points.");
+
         speechReportRepository.save(speechReport);
+
+        System.out.println("Saved WPM = " + speechReport.getWpm());
+        System.out.println("Saved Pause = " + speechReport.getPauseCount());
+        System.out.println("Saved Tip = " + speechReport.getTipMessage());
 
         practiceSessionRepository.save(practiceSession);
 
-        return speechReport;
+        return speechReportRepository.findById(speechReport.getId()).orElseThrow();
     }
 
     public SpeechReport getReport(Long sessionId) {

@@ -20,6 +20,14 @@ public class SpeechReport {
 
     private Double score;
 
+    private Double wpm;
+
+    private Integer pauseCount;
+
+    private String tipMessage;
+
+    private String missingKeyPoints;
+
     @JsonIgnore
 
     @OneToOne
@@ -66,5 +74,37 @@ public class SpeechReport {
 
     public void setFillerWords(List<FillerWord> fillerWords) {
         this.fillerWords = fillerWords;
+    }
+
+    public Double getWpm() {
+        return wpm;
+    }
+
+    public void setWpm(Double wpm) {
+        this.wpm = wpm;
+    }
+
+    public Integer getPauseCount() {
+        return pauseCount;
+    }
+
+    public void setPauseCount(Integer pauseCount) {
+        this.pauseCount = pauseCount;
+    }
+
+    public String getTipMessage() {
+        return tipMessage;
+    }
+
+    public void setTipMessage(String tipMessage) {
+        this.tipMessage = tipMessage;
+    }
+
+    public String getMissingKeyPoints() {
+        return missingKeyPoints;
+    }
+
+    public void setMissingKeyPoints(String missingKeyPoints) {
+        this.missingKeyPoints = missingKeyPoints;
     }
 }
